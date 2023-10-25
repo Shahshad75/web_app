@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class UploadedImage extends StatelessWidget {
   const UploadedImage(
-      {super.key, required this.text, required this.onDoubleTap});
+      {super.key, required this.text, required this.onDoubleTap, this.onHover});
   final String text;
   final void Function()? onDoubleTap;
+  final void Function(bool)? onHover;
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onHover: onHover,
       onDoubleTap: onDoubleTap,
       child: Container(
         decoration: BoxDecoration(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:web_app/blocks/detail_bloc/detail_bloc.dart';
 import 'package:web_app/widget/tabbar/pending_req.dart';
 import 'package:web_app/widget/tabbar/rejected_drivers.dart';
 
@@ -12,6 +14,7 @@ class TabBars extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
       desktop: (BuildContext context) => page(context),
+      
     );
   }
 
@@ -24,20 +27,71 @@ class TabBars extends StatelessWidget {
         height: screenHeight,
         child: DefaultTabController(
           length: 3,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              headtext(),
-              tabbar(),
-              const Expanded(
-                child: TabBarView(
-                  children: [
-                    Center(child: PendingReq()),
-                    Center(child: ApprovedDrivers()),
-                    Center(child: RejectedDrivers()),
-                  ],
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  headtext(),
+                  tabbar(),
+                  const Expanded(
+                    child: TabBarView(
+                      children: [
+                        Center(child: PendingReq()),
+                        Center(child: ApprovedDrivers()),
+                        Center(child: RejectedDrivers()),
+                      ],
+                    ),
+                  ),
+                ],
               ),
+              BlocBuilder<DetailBloc, DetailState>(
+                builder: (context, state) {
+                  if (state is IsHoverState1) {
+                    return Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            color: Color.fromARGB(92, 255, 193, 7),
+                            image: DecorationImage(
+                                image: AssetImage('images/admin.jpg'))),
+                        width: 500,
+                        height: 500,
+                      ),
+                    );
+                  } else if (state is IsHoverState2) {
+                    return Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        width: 500,
+                        height: 500,
+                        color: const Color.fromARGB(92, 27, 255, 20),
+                      ),
+                    );
+                  } else if (state is IsHoverState3) {
+                    return Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        width: 500,
+                        height: 500,
+                        color: const Color.fromARGB(92, 7, 189, 255),
+                      ),
+                    );
+                  } else if (state is IsHoverState4) {
+                    return Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        width: 500,
+                        height: 500,
+                        color: const Color.fromARGB(92, 255, 7, 234),
+                      ),
+                    );
+                  } else if (state is IsHoverFalseState) {
+                    return const SizedBox();
+                  }
+                  return Container();
+                },
+              )
             ],
           ),
         ),

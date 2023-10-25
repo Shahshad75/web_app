@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:web_app/blocks/detail_bloc/detail_bloc.dart';
 import 'package:web_app/widget/info_widgest/info_.dart';
 import 'package:web_app/widget/info_widgest/info_text.dart';
 import 'package:web_app/widget/info_widgest/uploaded_image.dart';
@@ -43,232 +45,287 @@ class _PendingReqState extends State<PendingReq> {
           child: Padding(
             padding:
                 const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Stack(
               children: [
-                const Text(
-                  'Note: Users can access the application as a common user until the profile is approved by the administrator.',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Divider(),
-                SizedBox(
-                  width: double.maxFinite,
-                  height: 320,
-                  child: Row(
-                    children: [
-                      const Expanded(
-                          flex: 2,
-                          child: SizedBox(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Note: Users can access the application as a common user until the profile is approved by the administrator.',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(),
+                    SizedBox(
+                      width: double.maxFinite,
+                      height: 320,
+                      child: Row(
+                        children: [
+                          const Expanded(
+                              flex: 2,
+                              child: SizedBox(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    CircleAvatar(
-                                      radius: 100,
-                                      backgroundImage:
-                                          AssetImage('images/admin.jpg'),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 100,
+                                          backgroundImage:
+                                              AssetImage('images/admin.jpg'),
+                                        ),
+                                        SizedBox(
+                                          height: 25,
+                                        ),
+                                        Text(
+                                          'Shahsad babu',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 25,
-                                    ),
-                                    Text(
-                                      'Shahsad babu',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500),
-                                    ),
+                                    VerticalDivider()
                                   ],
                                 ),
-                                VerticalDivider()
-                              ],
-                            ),
-                          )),
-                      Expanded(
-                          flex: 6,
-                          child: SizedBox(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                    flex: 4,
-                                    child: SizedBox(
-                                      width: MediaQuery.sizeOf(context).width +
-                                          450,
-                                      child: const Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 150,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                InfoTexts(text: 'Email'),
-                                                InfoTexts(text: 'Phone No.'),
-                                                InfoTexts(text: 'Gender'),
-                                                InfoTexts(text: 'BirthDate'),
-                                                InfoTexts(text: 'Expirience')
-                                              ],
-                                            ),
+                              )),
+                          Expanded(
+                              flex: 6,
+                              child: SizedBox(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                        flex: 4,
+                                        child: SizedBox(
+                                          width:
+                                              MediaQuery.sizeOf(context).width +
+                                                  450,
+                                          child: const Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 150,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    InfoTexts(text: 'Email'),
+                                                    InfoTexts(
+                                                        text: 'Phone No.'),
+                                                    InfoTexts(text: 'Gender'),
+                                                    InfoTexts(
+                                                        text: 'BirthDate'),
+                                                    InfoTexts(
+                                                        text: 'Expirience')
+                                                  ],
+                                                ),
+                                              ),
+                                              Expanded(
+                                                  child: SizedBox(
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    InfoTexts(
+                                                        text:
+                                                            'shahshd@gmail.com'),
+                                                    InfoTexts(
+                                                        text: '7584652300'),
+                                                    InfoTexts(text: 'Male'),
+                                                    InfoTexts(
+                                                        text: '13/04/2002'),
+                                                    InfoTexts(text: '+3 Year')
+                                                  ],
+                                                ),
+                                              ))
+                                            ],
                                           ),
-                                          Expanded(
-                                              child: SizedBox(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                InfoTexts(
-                                                    text: 'shahshd@gmail.com'),
-                                                InfoTexts(text: '7584652300'),
-                                                InfoTexts(text: 'Male'),
-                                                InfoTexts(text: '13/04/2002'),
-                                                InfoTexts(text: '+3 Year')
-                                              ],
-                                            ),
-                                          ))
+                                        )),
+                                    Expanded(
+                                        child: SizedBox(
+                                      width: 400,
+                                      child: Row(
+                                        children: [
+                                          TextButton(
+                                              onPressed: () {},
+                                              child: const Text(
+                                                'Approve',
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              )),
+                                          const SizedBox(
+                                            width: 40,
+                                          ),
+                                          TextButton(
+                                              onPressed: () {},
+                                              child: const Text(
+                                                'Reject',
+                                                style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ))
                                         ],
                                       ),
                                     )),
-                                Expanded(
-                                    child: SizedBox(
-                                  width: 400,
-                                  child: Row(
-                                    children: [
-                                      TextButton(
-                                          onPressed: () {},
-                                          child: const Text(
-                                            'Approve',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                      const SizedBox(
-                                        width: 40,
-                                      ),
-                                      TextButton(
-                                          onPressed: () {},
-                                          child: const Text(
-                                            'Reject',
-                                            style: TextStyle(
-                                              color: Colors.red,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ))
-                                    ],
-                                  ),
-                                )),
-                              ],
+                                  ],
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                    Expanded(
+                        child: SizedBox(
+                            child: Padding(
+                      padding: const EdgeInsets.only(left: 80.0),
+                      child: ListView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                          const Text(
+                            "Vehicle Details",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Info(
+                            text: 'Vehicle Brand',
+                            informs1: Text("Toyota"),
+                            informs2: SizedBox(),
+                          ),
+                          const Info(
+                            text: 'Model',
+                            informs1: Text("x12Max"),
+                            informs2: SizedBox(),
+                          ),
+                          const Info(
+                            text: 'Year',
+                            informs1: Text("2018"),
+                            informs2: SizedBox(),
+                          ),
+                          const Info(
+                            text: 'Color',
+                            informs1: Text("White"),
+                            informs2: SizedBox(),
+                          ),
+                          const Info(
+                            text: 'Seats',
+                            informs1: Text("4 Seats"),
+                            informs2: SizedBox(),
+                          ),
+                          const Info(
+                            text: 'Number',
+                            informs1: Text("KL 10 M 2988"),
+                            informs2: SizedBox(),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 25, bottom: 10),
+                            child: Text(
+                              "Documets Details",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w600),
                             ),
-                          ))
-                    ],
-                  ),
+                          ),
+                          const Info(
+                              text: "License No.",
+                              informs1: Text('44521541651451'),
+                              informs2: SizedBox()),
+                          const Info(
+                            text: "License Expire Date",
+                            informs1: Text('10/11/2027'),
+                            informs2: SizedBox(),
+                          ),
+                          Info(
+                            text: "License Images",
+                            informs1: BlocBuilder<DetailBloc, DetailState>(
+                              builder: (context, state) {
+                                return UploadedImage(
+                                  onHover: (value) {
+                                    context.read<DetailBloc>().add(
+                                        ImageHoveEvent1(
+                                            isHover: value,
+                                            image: Imagenumber.image1));
+                                  },
+                                  text: "License front",
+                                  onDoubleTap: () {},
+                                );
+                              },
+                            ),
+                            informs2: BlocBuilder<DetailBloc, DetailState>(
+                              builder: (context, state) {
+                                return UploadedImage(
+                                  onHover: (value) {
+                                    context.read<DetailBloc>().add(
+                                        ImageHoveEvent2(
+                                            isHover: value,
+                                            image: Imagenumber.image2));
+                                  },
+                                  text: "License back",
+                                  onDoubleTap: () {},
+                                );
+                              },
+                            ),
+                          ),
+                          const Info(
+                              text: "AdharCard No.",
+                              informs1: Text('11005440484848'),
+                              informs2: SizedBox()),
+                          const Info(
+                              text: "Address",
+                              informs1: Text('44521541651451'),
+                              informs2: SizedBox()),
+                          Info(
+                            text: "AdharImage",
+                            informs1: BlocBuilder<DetailBloc, DetailState>(
+                              builder: (context, state) {
+                                return UploadedImage(
+                                  onHover: (value) {
+                                    context.read<DetailBloc>().add(
+                                        ImageHoveEvent3(
+                                            isHover: value,
+                                            image: Imagenumber.image3));
+                                  },
+                                  text: "Adhar front",
+                                  onDoubleTap: () {},
+                                );
+                              },
+                            ),
+                            informs2: BlocBuilder<DetailBloc, DetailState>(
+                              builder: (context, state) {
+                                return UploadedImage(
+                                  onHover: (value) {
+                                    context.read<DetailBloc>().add(
+                                        ImageHoveEvent4(
+                                            isHover: value,
+                                            image: Imagenumber.image4));
+                                  },
+                                  text: "Adhar back",
+                                  onDoubleTap: () {},
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          )
+                        ],
+                      ),
+                    )))
+                  ],
                 ),
-                const Divider(),
-                Expanded(
-                    child: SizedBox(
-                        child: Padding(
-                  padding: const EdgeInsets.only(left: 80.0),
-                  child: ListView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      const Text(
-                        "Vehicle Details",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Info(
-                        text: 'Vehicle Brand',
-                        informs1: Text("Toyota"),
-                        informs2: SizedBox(),
-                      ),
-                      const Info(
-                        text: 'Model',
-                        informs1: Text("x12Max"),
-                        informs2: SizedBox(),
-                      ),
-                      const Info(
-                        text: 'Year',
-                        informs1: Text("2018"),
-                        informs2: SizedBox(),
-                      ),
-                      const Info(
-                        text: 'Color',
-                        informs1: Text("White"),
-                        informs2: SizedBox(),
-                      ),
-                      const Info(
-                        text: 'Seats',
-                        informs1: Text("4 Seats"),
-                        informs2: SizedBox(),
-                      ),
-                      const Info(
-                        text: 'Number',
-                        informs1: Text("KL 10 M 2988"),
-                        informs2: SizedBox(),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 25, bottom: 10),
-                        child: Text(
-                          "Documets Details",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      const Info(
-                          text: "License No.",
-                          informs1: Text('44521541651451'),
-                          informs2: SizedBox()),
-                      const Info(
-                        text: "License Expire Date",
-                        informs1: Text('10/11/2027'),
-                        informs2: SizedBox(),
-                      ),
-                      Info(
-                        text: "License Images",
-                        informs1: UploadedImage(
-                          text: "License front",
-                          onDoubleTap: () {},
-                        ),
-                        informs2: UploadedImage(
-                          text: "License back",
-                          onDoubleTap: () {},
-                        ),
-                      ),
-                      const Info(
-                          text: "AdharCard No.",
-                          informs1: Text('11005440484848'),
-                          informs2: SizedBox()),
-                      const Info(
-                          text: "Address",
-                          informs1: Text('44521541651451'),
-                          informs2: SizedBox()),
-                      Info(
-                        text: "AdharImage",
-                        informs1: UploadedImage(
-                          text: "Adhar front",
-                          onDoubleTap: () {},
-                        ),
-                        informs2: UploadedImage(
-                          text: "Adhar back",
-                          onDoubleTap: () {},
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      )
-                    ],
-                  ),
-                )))
+               
               ],
             ),
           ),
@@ -349,10 +406,6 @@ class _PendingReqState extends State<PendingReq> {
                                         setState(() {
                                           isSelected = true;
                                         });
-                                        // Navigator.of(context).push(
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //             const ApprovedDrivers()));
                                       },
                                       child: const Text('View Profile'))
                                 ],
