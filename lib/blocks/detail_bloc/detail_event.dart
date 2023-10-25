@@ -1,4 +1,6 @@
 part of 'detail_bloc.dart';
+abstract class DetailEvent {}
 
-@immutable
-sealed class DetailEvent {}
+class ImageHoveEvent extends DetailEvent{
+  
+}

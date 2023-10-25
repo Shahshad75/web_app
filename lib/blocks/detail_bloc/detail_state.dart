@@ -1,6 +1,5 @@
 part of 'detail_bloc.dart';
 
-@immutable
-sealed class DetailState {}
+abstract class DetailState {}
 
 final class DetailInitial extends DetailState {}
