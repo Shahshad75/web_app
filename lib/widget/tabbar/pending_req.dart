@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/detail_bloc/detail_bloc.dart';
+import 'package:web_app/pages/image_screen.dart';
 import 'package:web_app/widget/info_widgest/info_.dart';
 import 'package:web_app/widget/info_widgest/info_text.dart';
 import 'package:web_app/widget/info_widgest/uploaded_image.dart';
@@ -247,6 +248,8 @@ class _PendingReqState extends State<PendingReq> {
                             informs1: Text('10/11/2027'),
                             informs2: SizedBox(),
                           ),
+
+                          // images//
                           Info(
                             text: "License Images",
                             informs1: BlocBuilder<DetailBloc, DetailState>(
@@ -259,7 +262,12 @@ class _PendingReqState extends State<PendingReq> {
                                             image: Imagenumber.image1));
                                   },
                                   text: "License front",
-                                  onDoubleTap: () {},
+                                  onDoubleTap: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) => const ImageScreen(),
+                                    ));
+                                  },
                                 );
                               },
                             ),
@@ -325,7 +333,6 @@ class _PendingReqState extends State<PendingReq> {
                     )))
                   ],
                 ),
-               
               ],
             ),
           ),
