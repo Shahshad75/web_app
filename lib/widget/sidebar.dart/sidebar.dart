@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
+import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
 import 'expandtile.dart';
 
 class SideBar extends StatelessWidget {
@@ -10,11 +11,11 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
-      desktop: (BuildContext context) => sidebar(),
+      desktop: (BuildContext context) => sidebar(context),
     );
   }
 
-  Widget sidebar() {
+  Widget sidebar(BuildContext context) {
     return Column(
       children: [
         adminProfile(),
@@ -34,15 +35,21 @@ class SideBar extends StatelessWidget {
             children: [
               ExpandTile(
                 title: "Pending Request",
-                onTap: () {},
+                onTap: () {
+                  context.read<HomeBloc>().add(PendingEvent());
+                },
               ),
               ExpandTile(
                 title: "Approved Drivers",
-                onTap: () {},
+                onTap: () {
+                  context.read<HomeBloc>().add(ApprovedEvent());
+                },
               ),
               ExpandTile(
                 title: "Rejected Drivers",
-                onTap: () {},
+                onTap: () {
+                  context.read<HomeBloc>().add(RejectEvent());
+                },
               ),
             ],
           ),
@@ -52,17 +59,26 @@ class SideBar extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: ExpansionTile(
+            initiallyExpanded: true,
             textColor: Colors.black,
             collapsedTextColor: Colors.black,
             title: Text(
-              'Revenue Side',
+              'Coupons Side',
               style: GoogleFonts.poppins(
                   fontSize: 19, fontWeight: FontWeight.w500),
             ),
             children: [
               ExpandTile(
-                title: "Total Details",
-                onTap: () {},
+                title: "Add coupons",
+                onTap: () {
+                  context.read<HomeBloc>().add(CouponAddNavigateEvent());
+                },
+              ),
+              ExpandTile(
+                title: "On-Going coupons",
+                onTap: () {
+                  context.read<HomeBloc>().add(OngoingScreenNavigateEvent());
+                },
               ),
             ],
           ),
