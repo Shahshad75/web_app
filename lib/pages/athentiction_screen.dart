@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web_app/pages/authenticat_screen.dart';
+import 'package:web_app/widget/authenticate.dart/authenticat_screen.dart';
 
 class AthenticationScreen extends StatelessWidget {
   const AthenticationScreen({super.key});

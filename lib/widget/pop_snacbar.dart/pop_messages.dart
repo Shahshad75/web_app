@@ -176,4 +176,35 @@ Best regards,
       print(emailLaunchUri.queryParameters);
     } else {}
   }
+
+  void logOut(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (
+        BuildContext context,
+      ) {
+        return AlertDialog(
+          title: const Text(
+            'Logout',
+            style: TextStyle(
+                color: Colors.grey, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          content: const Text("Are you sure to Logout?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('No'),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Yes"))
+          ],
+        );
+      },
+    );
+  }
 }

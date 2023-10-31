@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+
+import '../../../models/driver_model.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
@@ -11,6 +13,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<ApprovedEvent>(approvedEvent);
     on<RejectEvent>(rejectEvent);
     on<DetailScreenNavigate>(detailScreenNavigate);
+    on<ApprovedDetailNavigateEvent>(approvedDetailNavigateEvent);
+    on<RejectedDetailNavigateEvent>(rejectedDetailNavigateEvent);
   }
 
   FutureOr<void> couponAddNavigateEvent(
@@ -37,6 +41,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> detailScreenNavigate(
       DetailScreenNavigate event, Emitter<HomeState> emit) {
-    emit(DetailNavigateState());
+    emit(DetailNavigateState(driver: event.driver));
+  }
+
+  FutureOr<void> approvedDetailNavigateEvent(
+      ApprovedDetailNavigateEvent event, Emitter<HomeState> emit) {
+    emit(ApprovedNavigateState(driver: event.driver));
+  }
+
+  FutureOr<void> rejectedDetailNavigateEvent(
+      RejectedDetailNavigateEvent event, Emitter<HomeState> emit) {
+    emit(RejectNavigateState(driver: event.driver));
   }
 }

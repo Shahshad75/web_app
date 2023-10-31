@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:web_app/blocks/api_bloc/api_bloc.dart';
 import 'package:web_app/pages/home_screen.dart';
 import 'package:web_app/widget/textfields/textfield.dart';
 
@@ -23,26 +25,26 @@ class AthentictionTab extends StatelessWidget {
     return Center(
       child: Container(
         width: hight * .6,
-        height: width * .3,
+        // height: width * .3,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.amber),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text('Connecting Driver to the public'),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: hight * .1,
               ),
               const Text(
                 'Admin Login ',
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: hight * .01,
               ),
               CustomTextfield(
                   text: "Username",
@@ -54,18 +56,19 @@ class AthentictionTab extends StatelessWidget {
                   controller: passwordController,
                   keyboardType: TextInputType.name,
                   readOnly: false),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: hight * .02,
               ),
               InkWell(
                 onTap: () {
+                  context.read<ApiBloc>().add(DriverFetchEvent());
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const Homescreen(),
                   ));
                 },
                 child: Container(
-                  width: 350,
-                  height: 50,
+                  width: width * .3,
+                  height: hight * .05,
                   decoration: BoxDecoration(
                       color: Colors.amber,
                       boxShadow: const [
@@ -116,6 +119,11 @@ class AthentictionTab extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(color: Colors.amber),
         ),
+        child: ElevatedButton(
+            onPressed: () {
+              context.read<ApiBloc>().add(DriverFetchEvent());
+            },
+            child: const Text('Call api')),
       ),
     );
   }

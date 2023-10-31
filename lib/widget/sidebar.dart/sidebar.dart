@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
+import 'package:web_app/widget/pop_snacbar.dart/pop_messages.dart';
 import 'expandtile.dart';
 
 class SideBar extends StatelessWidget {
@@ -16,6 +17,7 @@ class SideBar extends StatelessWidget {
   }
 
   Widget sidebar(BuildContext context) {
+    PopMessages popMessages = PopMessages();
     return Column(
       children: [
         adminProfile(),
@@ -94,7 +96,9 @@ class SideBar extends StatelessWidget {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.amber),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  popMessages.logOut(context);
+                },
                 child: const Text('LogOut')))
       ],
     );

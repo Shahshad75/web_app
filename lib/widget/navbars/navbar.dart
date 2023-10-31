@@ -19,10 +19,9 @@ class Navbar extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(left: 20, right: 20, top: 5),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                navIcon(),
                 textfield(),
               ],
             ),

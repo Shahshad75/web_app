@@ -4,10 +4,10 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/detail_bloc/detail_bloc.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
 import 'package:web_app/widget/info_widgest/document_hoverimage.dart';
-import 'package:web_app/widget/tabbar/pending_req.dart';
-import 'package:web_app/widget/tabbar/rejected_drivers.dart';
+import 'package:web_app/widget/tabbar/pending_tabbar.dart';
+import 'package:web_app/widget/tabbar/rejected_tabbar.dart';
 
-import 'approved_drivers.dart';
+import 'approve_tabbar.dart';
 
 class TabBars extends StatelessWidget {
   const TabBars({super.key});
@@ -43,8 +43,8 @@ class TabBars extends StatelessWidget {
                             child: TabBarView(
                               children: [
                                 Center(child: PendingReq()),
-                                Center(child: ApprovedDrivers()),
-                                Center(child: RejectedDrivers()),
+                                Center(child: ApprovedTabbar()),
+                                Center(child: RejectTabbar()),
                               ],
                             ),
                           ),
@@ -56,16 +56,19 @@ class TabBars extends StatelessWidget {
                       BlocBuilder<DetailBloc, DetailState>(
                         builder: (context, state) {
                           if (state is IsHoverState1) {
-                            return const HoverImage(
+                            return  HoverImage(url:state.url ,
                                 alignment: Alignment.centerRight);
                           } else if (state is IsHoverState2) {
-                            return const HoverImage(
+                            return  HoverImage(
+                              url: state.url,
                                 alignment: Alignment.centerLeft);
                           } else if (state is IsHoverState3) {
-                            return const HoverImage(
+                            return  HoverImage(
+                              url: state.url,
                                 alignment: Alignment.centerRight);
                           } else if (state is IsHoverState4) {
-                            return const HoverImage(
+                            return  HoverImage(
+                              url: state.url,
                                 alignment: Alignment.centerLeft);
                           } else if (state is IsHoverFalseState) {
                             return const SizedBox();

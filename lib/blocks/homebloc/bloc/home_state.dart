@@ -14,4 +14,17 @@ final class ApproveTabState extends HomeState {}
 
 final class RejectTabState extends HomeState {}
 
-final class DetailNavigateState extends HomeState {}
+final class DetailNavigateState extends HomeState {
+  DriverInfo driver;
+  DetailNavigateState({required this.driver});
+}
+
+final class ApprovedNavigateState extends HomeState {
+  DriverInfo driver;
+  ApprovedNavigateState({required this.driver});
+}
+
+final class RejectNavigateState extends HomeState {
+  DriverInfo driver;
+  RejectNavigateState({required this.driver});
+}

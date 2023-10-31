@@ -15,8 +15,8 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
 
   FutureOr<void> imageHoveEvent(
       ImageHoveEvent1 event, Emitter<DetailState> emit) {
-    if (event.isHover && event.image == Imagenumber.image1) {
-      emit(IsHoverState1());
+    if (event.isHover && event.image.isNotEmpty) {
+      emit(IsHoverState1(url: event.image));
     } else {
       emit(IsHoverFalseState());
     }
@@ -24,8 +24,8 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
 
   FutureOr<void> imageHoveEvent2(
       ImageHoveEvent2 event, Emitter<DetailState> emit) {
-    if (event.isHover && event.image == Imagenumber.image2) {
-      emit(IsHoverState2());
+    if (event.isHover && event.image.isNotEmpty) {
+      emit(IsHoverState2(url: event.image));
     } else {
       emit(IsHoverFalseState());
     }
@@ -33,8 +33,8 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
 
   FutureOr<void> imageHoveEvent3(
       ImageHoveEvent3 event, Emitter<DetailState> emit) {
-    if (event.isHover && event.image == Imagenumber.image3) {
-      emit(IsHoverState3());
+    if (event.isHover && event.image.isNotEmpty) {
+      emit(IsHoverState3(url: event.image));
     } else {
       emit(IsHoverFalseState());
     }
@@ -42,8 +42,8 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
 
   FutureOr<void> imageHoveEvent4(
       ImageHoveEvent4 event, Emitter<DetailState> emit) {
-    if (event.isHover && event.image == Imagenumber.image4) {
-      emit(IsHoverState4());
+    if (event.isHover && event.image.isNotEmpty) {
+      emit(IsHoverState4(url: event.image));
     } else {
       emit(IsHoverFalseState());
     }
