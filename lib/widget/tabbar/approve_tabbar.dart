@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
 import 'package:web_app/pages/approved_drivers.dart';
-import 'package:web_app/pages/image_screen.dart';
 import 'package:web_app/widget/info_widgest/uploaded_image.dart';
 
 import '../../blocks/detail_bloc/detail_bloc.dart';
@@ -20,7 +19,7 @@ class ApprovedTabbar extends StatelessWidget {
       desktop: (BuildContext context) => BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state is! ApprovedNavigateState) {
-            return ApprovedDrives();
+            return const ApprovedDrives();
           } else {
             return cons2(context);
           }

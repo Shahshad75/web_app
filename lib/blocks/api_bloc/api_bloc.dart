@@ -15,7 +15,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       DriverFetchEvent event, Emitter<ApiState> emit) async {
     emit(LoadingFetchState());
     await Future.delayed(const Duration(seconds: 1));
-    List<DriverInfo> drivers = await Apicalling.getAllDrivers();
+    List<DriverInfo> drivers = await Apicalling.getAllPendingDrivers();
     if (drivers.isNotEmpty) {
       emit(FetchSucessState(drivers: drivers));
     } else {
