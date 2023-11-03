@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
+import 'package:web_app/models/driver_model.dart';
 import 'package:web_app/pages/approved_drivers.dart';
+import 'package:web_app/pages/image_screen.dart';
 import 'package:web_app/widget/info_widgest/uploaded_image.dart';
-
 import '../../blocks/detail_bloc/detail_bloc.dart';
 import '../info_widgest/info_.dart';
 import '../info_widgest/info_text.dart';
@@ -18,17 +19,17 @@ class ApprovedTabbar extends StatelessWidget {
     return ScreenTypeLayout.builder(
       desktop: (BuildContext context) => BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          if (state is! ApprovedNavigateState) {
-            return const ApprovedDrives();
+          if (state is ApprovedNavigateState) {
+            return driverDetails(context, state.driver);
           } else {
-            return cons2(context);
+            return const ApprovedDrives();
           }
         },
       ),
     );
   }
 
-  Widget cons2(BuildContext context) {
+  Widget driverDetails(BuildContext context, DriverInfo driver) {
     PopMessages popMessages = PopMessages();
     return Padding(
       padding: const EdgeInsets.only(top: 10, right: 30),
@@ -68,7 +69,7 @@ class ApprovedTabbar extends StatelessWidget {
                       height: 320,
                       child: Row(
                         children: [
-                          const Expanded(
+                          Expanded(
                               flex: 2,
                               child: SizedBox(
                                 child: Row(
@@ -80,23 +81,22 @@ class ApprovedTabbar extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         CircleAvatar(
-                                          radius: 100,
-                                          backgroundImage:
-                                              AssetImage('images/admin.jpg'),
-                                        ),
-                                        SizedBox(
+                                            radius: 100,
+                                            backgroundImage:
+                                                NetworkImage(driver.driverImg)),
+                                        const SizedBox(
                                           height: 25,
                                         ),
                                         Text(
-                                          'Shahsad babu',
-                                          style: TextStyle(
+                                          driver.name,
+                                          style: const TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w500),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Row(
+                                        const Row(
                                           children: [
                                             Icon(
                                               Icons.gpp_good,
@@ -114,7 +114,7 @@ class ApprovedTabbar extends StatelessWidget {
                                         )
                                       ],
                                     ),
-                                    VerticalDivider()
+                                    const VerticalDivider()
                                   ],
                                 ),
                               )),
@@ -130,9 +130,9 @@ class ApprovedTabbar extends StatelessWidget {
                                           width:
                                               MediaQuery.sizeOf(context).width +
                                                   450,
-                                          child: const Row(
+                                          child: Row(
                                             children: [
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 150,
                                                 child: Column(
                                                   mainAxisAlignment:
@@ -160,14 +160,16 @@ class ApprovedTabbar extends StatelessWidget {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     InfoTexts(
+                                                        text: driver.email),
+                                                    InfoTexts(
                                                         text:
-                                                            'shahshd@gmail.com'),
+                                                            driver.phoneNumber),
                                                     InfoTexts(
-                                                        text: '7584652300'),
-                                                    InfoTexts(text: 'Male'),
+                                                        text: driver.gender),
                                                     InfoTexts(
-                                                        text: '13/04/2002'),
-                                                    InfoTexts(text: '+3 Year')
+                                                        text: driver.birthDate),
+                                                    InfoTexts(
+                                                        text: driver.experience)
                                                   ],
                                                 ),
                                               ))
@@ -184,8 +186,8 @@ class ApprovedTabbar extends StatelessWidget {
                                           ),
                                           TextButton(
                                               onPressed: () {
-                                                popMessages
-                                                    .rejectSnacbar(context);
+                                                popMessages.rejectSnacbar(
+                                                    context, driver);
                                               },
                                               child: const Text(
                                                 'Reject',
@@ -219,35 +221,37 @@ class ApprovedTabbar extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          const Info(
+                          Info(
                             text: 'Vehicle Brand',
-                            informs1: Text("Toyota"),
-                            informs2: SizedBox(),
+                            informs1: Text(
+                              driver.vehicleBrand,
+                            ),
+                            informs2: const SizedBox(),
                           ),
-                          const Info(
+                          Info(
                             text: 'Model',
-                            informs1: Text("x12Max"),
-                            informs2: SizedBox(),
+                            informs1: Text(driver.vehicleModel),
+                            informs2: const SizedBox(),
                           ),
-                          const Info(
+                          Info(
                             text: 'Year',
-                            informs1: Text("2018"),
-                            informs2: SizedBox(),
+                            informs1: Text(driver.vehicleYear),
+                            informs2: const SizedBox(),
                           ),
-                          const Info(
+                          Info(
                             text: 'Color',
-                            informs1: Text("White"),
-                            informs2: SizedBox(),
+                            informs1: Text(driver.vehicleColor),
+                            informs2: const SizedBox(),
                           ),
-                          const Info(
+                          Info(
                             text: 'Seats',
-                            informs1: Text("4 Seats"),
-                            informs2: SizedBox(),
+                            informs1: Text(driver.vehicleSeat),
+                            informs2: const SizedBox(),
                           ),
-                          const Info(
+                          Info(
                             text: 'Number',
-                            informs1: Text("KL 10 M 2988"),
-                            informs2: SizedBox(),
+                            informs1: Text(driver.vehicleNumber),
+                            informs2: const SizedBox(),
                           ),
                           const Padding(
                             padding: EdgeInsets.only(top: 25, bottom: 10),
@@ -257,14 +261,14 @@ class ApprovedTabbar extends StatelessWidget {
                                   fontSize: 18, fontWeight: FontWeight.w600),
                             ),
                           ),
-                          const Info(
+                          Info(
                               text: "License No.",
-                              informs1: Text('44521541651451'),
-                              informs2: SizedBox()),
-                          const Info(
+                              informs1: Text(driver.licenseNo),
+                              informs2: const SizedBox()),
+                          Info(
                             text: "License Expire Date",
-                            informs1: Text('10/11/2027'),
-                            informs2: SizedBox(),
+                            informs1: Text(driver.licenceExp),
+                            informs2: const SizedBox(),
                           ),
 
                           // images//
@@ -274,17 +278,18 @@ class ApprovedTabbar extends StatelessWidget {
                               builder: (context, state) {
                                 return UploadedImage(
                                   onHover: (value) {
-                                    // context.read<DetailBloc>().add(
-                                    //     ImageHoveEvent1(
-                                    //         isHover: value,
-                                    //         image: ));
+                                    context.read<DetailBloc>().add(
+                                        ImageHoveEvent1(
+                                            isHover: value,
+                                            image: driver.licenceFront));
                                   },
                                   text: "License front",
                                   onDoubleTap: () {
-                                    // Navigator.of(context)
-                                    //     .push(MaterialPageRoute(
-                                    //   builder: (context) => const ImageScreen(),
-                                    // ));
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          ImageScreen(url: driver.licenceFront),
+                                    ));
                                   },
                                 );
                               },
@@ -293,13 +298,19 @@ class ApprovedTabbar extends StatelessWidget {
                               builder: (context, state) {
                                 return UploadedImage(
                                   onHover: (value) {
-                                    // context.read<DetailBloc>().add(
-                                    //     ImageHoveEvent2(
-                                    //         isHover: value,
-                                    //         image: Imagenumber.image2));
+                                    context.read<DetailBloc>().add(
+                                        ImageHoveEvent2(
+                                            isHover: value,
+                                            image: driver.licenceBack));
                                   },
                                   text: "License back",
-                                  onDoubleTap: () {},
+                                  onDoubleTap: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          ImageScreen(url: driver.licenceBack),
+                                    ));
+                                  },
                                 );
                               },
                             ),
@@ -318,13 +329,19 @@ class ApprovedTabbar extends StatelessWidget {
                               builder: (context, state) {
                                 return UploadedImage(
                                   onHover: (value) {
-                                    // context.read<DetailBloc>().add(
-                                    //     ImageHoveEvent3(
-                                    //         isHover: value,
-                                    //         image: Imagenumber.image3));
+                                    context.read<DetailBloc>().add(
+                                        ImageHoveEvent3(
+                                            isHover: value,
+                                            image: driver.adharFront));
                                   },
                                   text: "Adhar front",
-                                  onDoubleTap: () {},
+                                  onDoubleTap: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          ImageScreen(url: driver.adharFront),
+                                    ));
+                                  },
                                 );
                               },
                             ),
@@ -332,13 +349,19 @@ class ApprovedTabbar extends StatelessWidget {
                               builder: (context, state) {
                                 return UploadedImage(
                                   onHover: (value) {
-                                    // context.read<DetailBloc>().add(
-                                    //     ImageHoveEvent4(
-                                    //         isHover: value,
-                                    //         image: Imagenumber.image4));
+                                    context.read<DetailBloc>().add(
+                                        ImageHoveEvent4(
+                                            isHover: value,
+                                            image: driver.adharBack));
                                   },
                                   text: "Adhar back",
-                                  onDoubleTap: () {},
+                                  onDoubleTap: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          ImageScreen(url: driver.adharBack),
+                                    ));
+                                  },
                                 );
                               },
                             ),

@@ -11,6 +11,14 @@ final class FetchSucessState extends ApiState {
   FetchSucessState({required this.drivers});
 }
 
+final class FetchApprovedSucessState extends ApiState {
+  List<DriverInfo> drivers = [];
+  FetchApprovedSucessState({required this.drivers});
+}
+final class FetchRejectedSucessState extends ApiState {
+  List<DriverInfo> drivers = [];
+  FetchRejectedSucessState({required this.drivers});
+}
 final class EmptyDriverState extends ApiState {}
 
 final class FetchErrorState extends ApiState {}

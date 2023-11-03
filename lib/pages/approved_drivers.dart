@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-
+import '../blocks/api_bloc/api_bloc.dart';
+import '../blocks/homebloc/bloc/home_bloc.dart';
+import '../models/driver_model.dart';
 
 class ApprovedDrives extends StatelessWidget {
-  const ApprovedDrives({super.key,});
+  const ApprovedDrives({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return BlocBuilder<ApiBloc, ApiState>(
+      builder: (context, state) {
+        if (state is LoadingFetchState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is EmptyDriverState) {
+          return const Center(
+            child: Text('Empty Request'),
+          );
+        } else if (state is FetchApprovedSucessState) {
+          return Container(
             alignment: Alignment.topLeft,
             child: Padding(
               padding: const EdgeInsets.only(top: 10, right: 30),
@@ -46,9 +62,9 @@ class ApprovedDrives extends StatelessWidget {
                           //list view buidlder//
 
                           child: ListView.builder(
-                            itemCount: 10,
+                            itemCount: state.drivers.length,
                             itemBuilder: (context, index) {
-                          
+                              DriverInfo driver = state.drivers[index];
                               return Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 5),
@@ -56,18 +72,18 @@ class ApprovedDrives extends StatelessWidget {
                                   children: [
                                     Row(
                                       children: [
-                                      const  Expanded(
+                                        Expanded(
                                           child: ListTile(
                                             leading: CircleAvatar(
+                                              backgroundColor: Colors.black,
                                               radius: 21,
                                               child: CircleAvatar(
-                                             //   backgroundImage: NetworkImage(
-                                               //     driver.driverImg),
-                                              backgroundColor: Colors.black,
+                                                backgroundImage: NetworkImage(
+                                                    driver.driverImg),
                                               ),
                                             ),
-                                            title: Text("driver.name"),
-                                            trailing: Text("driver.email"),
+                                            title: Text(driver.name),
+                                            trailing: Text(driver.email),
                                           ),
                                         ),
                                         const SizedBox(
@@ -80,9 +96,9 @@ class ApprovedDrives extends StatelessWidget {
                                                       Color>(Colors.amber),
                                             ),
                                             onPressed: () {
-                                              // context
-                                                  // .read<HomeBloc>()
-                                                  // .add(ApprovedDetailNavigateEvent(driver: ));
+                                              context.read<HomeBloc>().add(
+                                                  ApprovedDetailNavigateEvent(
+                                                      driver: driver));
                                             },
                                             child: const Text('View Profile'))
                                       ],
@@ -104,6 +120,13 @@ class ApprovedDrives extends StatelessWidget {
               ),
             ),
           );
-   
+        } else if (state is FetchErrorState) {
+          return const Center(
+            child: Text('Connect your network'),
+          );
+        }
+        return const SizedBox();
+      },
+    );
   }
 }

@@ -3,13 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/detail_bloc/detail_bloc.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
-import 'package:web_app/pages/image_screen.dart';
 import 'package:web_app/pages/rejected_drivers.dart';
 import 'package:web_app/widget/info_widgest/info_.dart';
 import 'package:web_app/widget/info_widgest/info_text.dart';
 import 'package:web_app/widget/info_widgest/uploaded_image.dart';
 
-import '../pop_snacbar.dart/pop_messages.dart';
 
 class RejectTabbar extends StatelessWidget {
   const RejectTabbar({super.key});
@@ -22,7 +20,8 @@ class RejectTabbar extends StatelessWidget {
           if (state is RejectNavigateState) {
             return cons2(context);
           } else {
-            return RejectedDrivers();
+            return const
+             RejectedDrivers();
           }
         },
       ),
@@ -30,7 +29,7 @@ class RejectTabbar extends StatelessWidget {
   }
 
   Widget cons2(BuildContext context) {
-    PopMessages popMessages = PopMessages();
+    
     return Padding(
       padding: const EdgeInsets.only(top: 10, right: 30),
       child: SingleChildScrollView(

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:web_app/blocks/api_bloc/api_bloc.dart';
+import 'package:web_app/models/driver_model.dart';
 import 'package:web_app/widget/textfields/textfield.dart';
 
 class PopMessages {
   final username = TextEditingController();
   final password = TextEditingController();
   final rejectDescription = TextEditingController();
-  void showSnackBar(BuildContext context) {
+  void showSnackBar(BuildContext context, DriverInfo driver) {
     showDialog(
       context: context,
       builder: (
@@ -25,11 +28,13 @@ class PopMessages {
               children: [
                 const Divider(),
                 CustomTextfield(
+                    hintext: driver.email,
                     controller: username,
                     text: "Username",
                     keyboardType: TextInputType.none,
                     readOnly: false),
                 CustomTextfield(
+                    hintext: driver.phoneNumber,
                     controller: password,
                     text: "Password",
                     keyboardType: TextInputType.none,
@@ -46,7 +51,11 @@ class PopMessages {
             ),
             ElevatedButton(
                 onPressed: () {
-                  emailLauncher(username.text, password.text);
+                  context
+                      .read<ApiBloc>()
+                      .add(ApprovingDriverEvent(driver: driver));
+                  emailLauncher(username.text = driver.email,
+                      password.text = driver.phoneNumber);
                   Navigator.of(context).pop();
                 },
                 child: const Text("Confirm"))
@@ -92,12 +101,10 @@ Best regards,
 
     if (await canLaunch(emailLaunchUri.toString())) {
       await launch(emailLaunchUri.toString());
-
-      print(emailLaunchUri.queryParameters);
     } else {}
   }
 
-  void rejectSnacbar(BuildContext context) {
+  void rejectSnacbar(BuildContext context, DriverInfo driver) {
     showDialog(
       context: context,
       builder: (
@@ -148,6 +155,9 @@ Best regards,
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                   onPressed: () {
+                    context
+                        .read<ApiBloc>()
+                        .add(RejectingDriverEvent(driver: driver));
                     rejectEmail(rejectDescription.text.trim());
                     Navigator.of(context).pop();
                     rejectDescription.clear();
@@ -172,8 +182,6 @@ Best regards,
 
     if (await canLaunch(emailLaunchUri.toString())) {
       await launch(emailLaunchUri.toString());
-
-      print(emailLaunchUri.queryParameters);
     } else {}
   }
 

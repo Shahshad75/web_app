@@ -170,8 +170,8 @@ class _PendingReqState extends State<PendingReq> {
                                         children: [
                                           TextButton(
                                               onPressed: () {
-                                                popMessages
-                                                    .showSnackBar(context);
+                                                popMessages.showSnackBar(
+                                                    context, driver);
                                               },
                                               child: const Text(
                                                 'Approve',
@@ -184,8 +184,8 @@ class _PendingReqState extends State<PendingReq> {
                                           ),
                                           TextButton(
                                               onPressed: () {
-                                                popMessages
-                                                    .rejectSnacbar(context);
+                                                popMessages.rejectSnacbar(
+                                                    context, driver);
                                               },
                                               child: const Text(
                                                 'Reject',

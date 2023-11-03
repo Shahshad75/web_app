@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:web_app/blocks/api_bloc/api_bloc.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
 import 'package:web_app/pages/add_coupons_screen.dart';
 import 'package:web_app/pages/on_going_coupons_page.dart';
@@ -13,6 +14,7 @@ class Homescreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ApiBloc>().add(PendingDriverFetchEvent());
     return Scaffold(
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

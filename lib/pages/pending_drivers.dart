@@ -5,8 +5,10 @@ import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
 import 'package:web_app/models/driver_model.dart';
 
 class PendingDrivers extends StatelessWidget {
-  const PendingDrivers({super.key, });
- 
+  const PendingDrivers({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ApiBloc, ApiState>(
@@ -14,6 +16,10 @@ class PendingDrivers extends StatelessWidget {
         if (state is LoadingFetchState) {
           return const Center(
             child: CircularProgressIndicator(),
+          );
+        } else if (state is EmptyDriverState) {
+          return const Center(
+            child: Text('Empty Request'),
           );
         } else if (state is FetchSucessState) {
           return Container(
@@ -89,9 +95,9 @@ class PendingDrivers extends StatelessWidget {
                                                       Color>(Colors.amber),
                                             ),
                                             onPressed: () {
-                                              context
-                                                  .read<HomeBloc>()
-                                                  .add(DetailScreenNavigate(driver: driver));
+                                              context.read<HomeBloc>().add(
+                                                  DetailScreenNavigate(
+                                                      driver: driver));
                                             },
                                             child: const Text('View Profile'))
                                       ],
@@ -115,7 +121,7 @@ class PendingDrivers extends StatelessWidget {
           );
         } else if (state is FetchErrorState) {
           return const Center(
-            child: Text('Connect your network'),
+            child: Text('No pending request'),
           );
         }
         return const SizedBox();

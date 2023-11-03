@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
 class CustomTextfield extends StatelessWidget {
-  const CustomTextfield({
-    super.key,
-    required this.text,
-    this.controller,
-    required this.keyboardType,
-    required this.readOnly,
-    this.suffixIcon,
-    this.hintext,
-  });
+  const CustomTextfield(
+      {super.key,
+      required this.text,
+      this.controller,
+      required this.keyboardType,
+      required this.readOnly,
+      this.suffixIcon,
+      this.hintext,
+      this.validator});
   final Widget? suffixIcon;
   final String text;
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final bool readOnly;
   final String? hintext;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,6 +34,7 @@ class CustomTextfield extends StatelessWidget {
             height: 10,
           ),
           TextFormField(
+            validator: validator,
             readOnly: readOnly,
             keyboardType: keyboardType,
             controller: controller,
