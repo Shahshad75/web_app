@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:web_app/utils/colors.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({super.key});
@@ -51,11 +52,11 @@ class Navbar extends StatelessWidget {
               child: CupertinoTextField(
                 placeholder: 'Search',
                 placeholderStyle: const TextStyle(
-                    color: Colors.amber, fontWeight: FontWeight.w500),
+                    color: AppColors.primaryColor, fontWeight: FontWeight.w500),
                 decoration: BoxDecoration(
                     // color: Color.fromARGB(255, 246, 246, 246),
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.amber)),
+                    border: Border.all(color: AppColors.primaryColor)),
                 onChanged: (text) {},
               ),
             )),
@@ -78,12 +79,12 @@ class Navbar extends StatelessWidget {
   Widget navIcon() {
     return SizedBox(
       child: CircleAvatar(
-          backgroundColor: Colors.amber,
+          backgroundColor: AppColors.primaryColor,
           child: IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.menu,
-                color: Colors.white,
+                color: AppColors.backgroundColor,
               ))),
     );
   }

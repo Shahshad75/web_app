@@ -6,6 +6,7 @@ import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
 import 'package:web_app/models/driver_model.dart';
 import 'package:web_app/pages/image_screen.dart';
 import 'package:web_app/pages/pending_drivers.dart';
+import 'package:web_app/utils/colors.dart';
 import 'package:web_app/widget/info_widgest/info_.dart';
 import 'package:web_app/widget/info_widgest/info_text.dart';
 import 'package:web_app/widget/info_widgest/uploaded_image.dart';
@@ -52,7 +53,7 @@ class _PendingReqState extends State<PendingReq> {
                   offset: Offset(0, 3),
                 ),
               ],
-              border: Border.all(color: Colors.amber)),
+              border: Border.all(color: AppColors.primaryColor)),
           child: Padding(
             padding:
                 const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
@@ -176,6 +177,7 @@ class _PendingReqState extends State<PendingReq> {
                                               child: const Text(
                                                 'Approve',
                                                 style: TextStyle(
+                                                  color: AppColors.acceptColor,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               )),
@@ -190,7 +192,7 @@ class _PendingReqState extends State<PendingReq> {
                                               child: const Text(
                                                 'Reject',
                                                 style: TextStyle(
-                                                  color: Colors.red,
+                                                  color: AppColors.rejectColor,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ))

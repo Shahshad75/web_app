@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/api_bloc/api_bloc.dart';
 import 'package:web_app/blocks/auth_bloc/auth_bloc.dart';
+import 'package:web_app/utils/colors.dart';
 import 'package:web_app/widget/textfields/textfield.dart';
 
 class AthentictionTab extends StatelessWidget {
@@ -26,9 +27,8 @@ class AthentictionTab extends StatelessWidget {
     return Center(
       child: Container(
         width: hight * .6,
-        // height: width * .3,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.amber),
+          border: Border.all(color: AppColors.primaryColor),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
@@ -83,7 +83,7 @@ class AthentictionTab extends StatelessWidget {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          backgroundColor: Colors.red,
+                          backgroundColor: AppColors.rejectColor,
                           content: Text(
                               'Please enter your valid password and username'),
                         ),
@@ -94,7 +94,7 @@ class AthentictionTab extends StatelessWidget {
                     width: width * .3,
                     height: hight * .05,
                     decoration: BoxDecoration(
-                        color: Colors.amber,
+                        color: AppColors.primaryColor,
                         boxShadow: const [
                           BoxShadow(
                             color: Colors.grey,

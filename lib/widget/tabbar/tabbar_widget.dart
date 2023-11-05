@@ -1,4 +1,3 @@
-import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +5,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/api_bloc/api_bloc.dart';
 import 'package:web_app/blocks/detail_bloc/detail_bloc.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
+import 'package:web_app/utils/colors.dart';
 import 'package:web_app/widget/info_widgest/document_hoverimage.dart';
 import 'package:web_app/widget/tabbar/pending_tabbar.dart';
 import 'package:web_app/widget/tabbar/rejected_tabbar.dart';
@@ -101,7 +101,7 @@ Widget tabbar(BuildContext context) {
       },
       labelStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
       indicator: const BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.amber, width: 3))),
+          border: Border(bottom: BorderSide(color:AppColors.primaryColor, width: 3))),
       isScrollable: true,
       labelPadding: const EdgeInsets.symmetric(horizontal: 10.0),
       labelColor: Colors.black,

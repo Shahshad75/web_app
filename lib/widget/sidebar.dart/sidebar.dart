@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
+import 'package:web_app/utils/colors.dart';
 import 'package:web_app/widget/pop_snacbar.dart/pop_messages.dart';
 import 'expandtile.dart';
 
@@ -94,7 +95,7 @@ class SideBar extends StatelessWidget {
             child: ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.amber),
+                      MaterialStateProperty.all<Color>(AppColors.primaryColor),
                 ),
                 onPressed: () {
                   popMessages.logOut(context);
@@ -107,7 +108,7 @@ class SideBar extends StatelessWidget {
   Widget adminProfile() {
     return Container(
       decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.amber, width: 0.5))),
+          border: Border(bottom: BorderSide(color:AppColors.primaryColor, width: 0.5))),
       width: double.maxFinite,
       height: 200,
       child: const Column(

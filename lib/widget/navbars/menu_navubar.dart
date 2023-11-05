@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:web_app/utils/colors.dart';
 
 class MenuNav extends StatelessWidget {
   const MenuNav({super.key});
@@ -13,7 +14,7 @@ class MenuNav extends StatelessWidget {
 
   Widget navbar() {
     return Container(
-        color: const Color.fromARGB(125, 255, 223, 94),
+        color: AppColors.amberAccent,
         width: double.infinity,
         height: 62,
         child: Center(

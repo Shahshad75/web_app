@@ -4,6 +4,7 @@ import 'package:web_app/blocks/api_bloc/api_bloc.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
 import 'package:web_app/pages/add_coupons_screen.dart';
 import 'package:web_app/pages/on_going_coupons_page.dart';
+import 'package:web_app/utils/colors.dart';
 import 'package:web_app/widget/navbars/menu_navubar.dart';
 import 'package:web_app/widget/navbars/navbar.dart';
 import 'package:web_app/widget/sidebar.dart/sidebar.dart';
@@ -41,10 +42,10 @@ class Homescreen extends StatelessWidget {
               child: SizedBox(
                 child: Container(
                   decoration: const BoxDecoration(
-                      color: Colors.white,
+                      color:AppColors.backgroundColor,
                       border: Border(
                           left: BorderSide(
-                              color: Color.fromARGB(255, 255, 182, 11)))),
+                              color:AppColors.primaryColor))),
                   child: Column(
                     children: [
                       const Navbar(),

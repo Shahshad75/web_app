@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/coupon_bloc/bloc/coupon_bloc.dart';
+import 'package:web_app/utils/colors.dart';
 import 'package:web_app/widget/textfields/textfield.dart';
 
 // ignore: must_be_immutable
@@ -22,7 +23,7 @@ class CouponAddWindow extends StatelessWidget {
   Widget title(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: const Color.fromARGB(96, 255, 193, 7),
+        color:AppColors.amberAccent,
         width: double.maxFinite,
         height: MediaQuery.sizeOf(context).height * .10,
         child: Padding(
@@ -34,12 +35,12 @@ class CouponAddWindow extends StatelessWidget {
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: Color.fromARGB(161, 111, 92, 35)),
+                  color:AppColors.amberAccent),
             ),
             ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.amber),
+                      MaterialStateProperty.all<Color>(AppColors.primaryColor),
                 ),
                 onPressed: () {},
                 child: const Text("Add Coupon"))

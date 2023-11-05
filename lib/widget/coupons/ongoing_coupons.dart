@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:web_app/utils/colors.dart';
 
 class OngoingCoupons extends StatelessWidget {
   const OngoingCoupons({super.key});
@@ -16,7 +17,7 @@ class OngoingCoupons extends StatelessWidget {
       alignment: Alignment.centerLeft,
       width: double.infinity,
       height: 70,
-      color: const Color.fromARGB(91, 255, 193, 7),
+      color:AppColors.amberAccent,
       child: const Padding(
         padding: EdgeInsets.only(left: 20),
         child: Text(
@@ -35,7 +36,7 @@ class OngoingCoupons extends StatelessWidget {
         height: MediaQuery.sizeOf(context).height * .85,
         width: double.maxFinite,
         decoration: BoxDecoration(
-            color: Colors.white, border: Border.all(color: Colors.amber)),
+            color: Colors.white, border: Border.all(color: AppColors.primaryColor)),
         child: Column(
           children: [
             title(),
@@ -51,18 +52,17 @@ class OngoingCoupons extends StatelessWidget {
                   itemCount: 16,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                        // color: const Color.fromARGB(255, 243, 222, 33),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Colors.white,
-                            border: Border.all(color: Colors.amber)),
+                            color:AppColors.backgroundColor,
+                            border: Border.all(color:AppColors.primaryColor)),
                         child: Column(
                           children: [
                             Expanded(
                                 child: Container(
                               width: double.maxFinite,
                               decoration: const BoxDecoration(
-                                color: Colors.amber,
+                                color: AppColors.primaryColor,
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(30),
                                     topRight: Radius.circular(30)),

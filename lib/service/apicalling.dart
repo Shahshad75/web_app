@@ -57,7 +57,6 @@ class Apicalling {
         return null;
       }
     } catch (e) {
-      print('Failed to fetch data: $e');
       throw Exception('Failed to fetch data: $e');
     }
   }
@@ -81,7 +80,6 @@ class Apicalling {
         return null;
       }
     } catch (e) {
-      print('Failed to fetch data: $e');
       throw Exception('Failed to fetch data: $e');
     }
   }
@@ -102,7 +100,6 @@ class Apicalling {
 
       return response;
     } catch (e) {
-      print(e);
     }
   }
 

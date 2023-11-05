@@ -6,11 +6,10 @@ import 'package:web_app/blocks/auth_bloc/auth_bloc.dart';
 import 'package:web_app/blocks/coupon_bloc/bloc/coupon_bloc.dart';
 import 'package:web_app/blocks/detail_bloc/detail_bloc.dart';
 import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
-import 'package:web_app/pages/add_coupons_screen.dart';
 import 'package:web_app/pages/athentiction_screen.dart';
 import 'package:beamer/beamer.dart';
 import 'package:web_app/pages/home_screen.dart';
-import 'package:web_app/pages/on_going_coupons_page.dart';
+import 'package:web_app/pages/image_screen.dart';
 
 void main(List<String> args) async {
   runApp(Myapp());
@@ -31,8 +30,7 @@ class Myapp extends StatelessWidget {
         ),
     '/home': (context, state, data) => const Homescreen(),
     '/login': (context, state, data) => const AthenticationScreen(),
-    '/coupons': (context, state, data) => const CouponsAddScreen(),
-    '/ongoing': (context, state, data) => const OngoingCouponScreen(),
+    '/document_image': (context, state, data) => const ImageScreen(),
   }));
   @override
   Widget build(BuildContext context) {

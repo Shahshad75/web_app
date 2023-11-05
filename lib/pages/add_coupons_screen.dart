@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_app/utils/colors.dart';
 import 'package:web_app/widget/coupons/coupon_add_container.dart';
 
 class CouponsAddScreen extends StatelessWidget {
@@ -13,7 +14,7 @@ class CouponsAddScreen extends StatelessWidget {
       child: Container(
         width: double.maxFinite,
         decoration: BoxDecoration(
-            color: Colors.white, border: Border.all(color: Colors.amber)),
+            color:AppColors.backgroundColor, border: Border.all(color:AppColors.primaryColor)),
         child: Column(
           children: [CouponAddWindow()],
         ),

@@ -5,6 +5,7 @@ import 'package:web_app/blocks/homebloc/bloc/home_bloc.dart';
 import 'package:web_app/models/driver_model.dart';
 import 'package:web_app/pages/approved_drivers.dart';
 import 'package:web_app/pages/image_screen.dart';
+import 'package:web_app/utils/colors.dart';
 import 'package:web_app/widget/info_widgest/uploaded_image.dart';
 import '../../blocks/detail_bloc/detail_bloc.dart';
 import '../info_widgest/info_.dart';
@@ -47,7 +48,7 @@ class ApprovedTabbar extends StatelessWidget {
                   offset: Offset(0, 3),
                 ),
               ],
-              border: Border.all(color: Colors.amber)),
+              border: Border.all(color: AppColors.primaryColor)),
           child: Padding(
             padding:
                 const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
@@ -192,7 +193,7 @@ class ApprovedTabbar extends StatelessWidget {
                                               child: const Text(
                                                 'Reject',
                                                 style: TextStyle(
-                                                  color: Colors.red,
+                                                  color:AppColors.rejectColor,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ))
