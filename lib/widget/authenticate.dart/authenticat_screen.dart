@@ -1,10 +1,14 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:web_app/blocks/api_bloc/api_bloc.dart';
 import 'package:web_app/blocks/auth_bloc/auth_bloc.dart';
+import 'package:web_app/service/sharedpref.dart';
 import 'package:web_app/utils/colors.dart';
 import 'package:web_app/widget/textfields/textfield.dart';
+
+import '../../service/apicalling.dart';
 
 class AthentictionTab extends StatelessWidget {
   const AthentictionTab({super.key});
@@ -75,11 +79,16 @@ class AthentictionTab extends StatelessWidget {
                   height: hight * .02,
                 ),
                 InkWell(
-                  onTap: () {
+                  onTap: () async {
                     if (formkey.currentState!.validate()) {
-                      context.read<AuthBloc>().add(LoginButtonEvent(
-                          username: usernameController.text.trim(),
-                          password: passwordController.text.trim()));
+                      final logged = await Apicalling.adminlogin(
+                          usernameController.text.trim(),
+                          passwordController.text.trim());
+
+                      await Sharedpref.instence.setAuthDetaials(logged);
+                      Beamer.of(context).beamToNamed(
+                        '/home',
+                      );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

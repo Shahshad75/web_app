@@ -177,7 +177,8 @@ class _PendingReqState extends State<PendingReq> {
                                               child: const Text(
                                                 'Approve',
                                                 style: TextStyle(
-                                                  color: AppColors.acceptColor,
+                                                    color:
+                                                        AppColors.acceptColor,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               )),
@@ -339,6 +340,9 @@ class _PendingReqState extends State<PendingReq> {
                                       builder: (context) =>
                                           ImageScreen(url: driver.adharFront),
                                     ));
+                                    // Beamer.of(context).beamToNamed(
+                                    //     '/document_image',
+                                    //     data: {driver.adharFront});
                                   },
                                 );
                               },

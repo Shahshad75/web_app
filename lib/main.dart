@@ -10,8 +10,12 @@ import 'package:web_app/pages/athentiction_screen.dart';
 import 'package:beamer/beamer.dart';
 import 'package:web_app/pages/home_screen.dart';
 import 'package:web_app/pages/image_screen.dart';
+import 'package:web_app/pages/splash_screen.dart';
+import 'package:web_app/service/sharedpref.dart';
 
 void main(List<String> args) async {
+  await Sharedpref.instence.initeStorage();
+
   runApp(Myapp());
 }
 
@@ -19,15 +23,7 @@ class Myapp extends StatelessWidget {
   Myapp({super.key});
   final routerDelegate = BeamerDelegate(
       locationBuilder: RoutesLocationBuilder(routes: {
-    '/': (context, state, data) => BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) {
-            if (state is LoggedSucessfullyState) {
-              return const Homescreen();
-            } else {
-              return const AthenticationScreen();
-            }
-          },
-        ),
+    '/': (context, state, data) => const SplashScreen(),
     '/home': (context, state, data) => const Homescreen(),
     '/login': (context, state, data) => const AthenticationScreen(),
     '/document_image': (context, state, data) => const ImageScreen(),

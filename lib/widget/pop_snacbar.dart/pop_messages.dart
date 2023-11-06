@@ -1,8 +1,10 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:web_app/blocks/api_bloc/api_bloc.dart';
 import 'package:web_app/models/driver_model.dart';
+import 'package:web_app/service/sharedpref.dart';
 import 'package:web_app/widget/textfields/textfield.dart';
 
 class PopMessages {
@@ -208,6 +210,10 @@ Best regards,
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
+                  Sharedpref.instence.signout();
+                  Beamer.of(context).beamToNamed(
+                    '/login',
+                  );
                 },
                 child: const Text("Yes"))
           ],

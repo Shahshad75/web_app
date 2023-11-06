@@ -2,36 +2,57 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_app/blocks/auth_bloc/auth_bloc.dart';
-import 'package:web_app/pages/home_screen.dart';
 
-import 'athentiction_screen.dart';
+import '../service/apicalling.dart';
+import '../service/sharedpref.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    validatorDriver(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: BlocConsumer<AuthBloc, AuthState>(
-      listenWhen: (previous, current) => current is AuthActionableState,
-      buildWhen: (previous, current) => current is! AuthActionableState,
-      listener: (context, state) {
-        if (state is LoggedSucessfullyState) {
-          return Beamer.of(context).beamToNamed('/login');
-        } else if (state is LoggedFaildState) {
-          return Beamer.of(context).beamToNamed('/');
-        }
-      },
-      builder: (context, state) {
-        if (state is LoggedSucessfullyState) {
-          return const Homescreen();
-        } else if (state is LoggedFaildState) {
-          return const AthenticationScreen();
-        }
-        return const Center(
-          child: CircularProgressIndicator(),
+      body: Center(
+        child: Container(
+          color: Colors.yellow,
+          width: 200,
+          height: 200,
+        ),
+      ),
+    );
+  }
+
+  void validatorDriver(BuildContext context) async {
+    final driverAuth = Sharedpref.instence.getAuthDetails();
+
+    if (driverAuth != null) {
+      final data = await Apicalling.adminlogin('Shahshad@7558', 'Shah1234');
+
+      if (data != null) {
+        Beamer.of(context).beamToNamed(
+          '/home',
         );
-      },
-    ));
+      } else {
+        Beamer.of(context).beamToNamed(
+          '/login',
+        );
+      }
+    } else {
+      await Future.delayed(const Duration(seconds: 2));
+      Beamer.of(context).beamToNamed(
+        '/login',
+      );
+    }
   }
 }

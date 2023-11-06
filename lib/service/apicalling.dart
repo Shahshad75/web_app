@@ -9,9 +9,9 @@ class Apicalling {
     final response = await http.post(url,
         body: jsonEncode(body), headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
-      return response.statusCode;
+      return response.body;
     } else {
-      return response.statusCode;
+      return response.body;
     }
   }
 
@@ -99,8 +99,7 @@ class Apicalling {
           headers: {'Content-Type': 'application/json'});
 
       return response;
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 
   static Future rejected(id, DriverInfo driver) async {
@@ -112,7 +111,6 @@ class Apicalling {
     final encodeBody = jsonEncode(body);
     final response = await http.patch(url,
         body: encodeBody, headers: {'Content-Type': 'application/json'});
-    print(response.body);
     return response;
   }
 }
